@@ -80,7 +80,10 @@ Mỗi lần cập nhật, website tải ảnh trong Notion về, thu nhỏ rồi
 
 ## 6. Website trên mạng và cách cập nhật
 
-Website được lưu miễn phí trên GitHub. Bài trong Notion lên website theo hai cách:
+Website được lưu miễn phí trên GitHub.
+
+- Địa chỉ website: https://hongbichdo.github.io/hobii-story/
+- Nút cập nhật ngay: https://github.com/HongBichDo/hobii-story/actions/workflows/cap-nhat-website.yml (bấm **Run workflow**, rồi bấm nút xanh **Run workflow**) Bài trong Notion lên website theo hai cách:
 
 - **Tự động mỗi ngày lúc 6 giờ sáng.** Không cần làm gì.
 - **Cập nhật ngay khi muốn:** vào GitHub, mở kho `hobii-story`, chọn mục **Actions**, chọn **Cập nhật website**, bấm **Run workflow** rồi bấm nút xanh **Run workflow** lần nữa. Khoảng 1 đến 2 phút sau website đổi. Làm được cả trên điện thoại (ứng dụng GitHub hoặc trình duyệt).
