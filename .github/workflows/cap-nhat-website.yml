@@ -1,0 +1,66 @@
+# Cập nhật website HoBii Story từ Notion
+# - Tự chạy mỗi ngày lúc 6 giờ sáng (giờ Việt Nam)
+# - Bấm "Run workflow" trong mục Actions để cập nhật ngay
+# - Tự chạy khi có thay đổi mã nguồn
+name: Cập nhật website
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # 23 giờ UTC = 6 giờ sáng giờ Việt Nam
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cài công cụ thu nhỏ ảnh
+        run: npm ci
+
+      - name: Tính đường dẫn gốc của website
+        run: |
+          NAME="${GITHUB_REPOSITORY#*/}"
+          OWNER="$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')"
+          if [ "$(echo "$NAME" | tr '[:upper:]' '[:lower:]')" = "$OWNER.github.io" ]; then
+            echo "SITE_BASE=" >> "$GITHUB_ENV"
+          else
+            echo "SITE_BASE=/$NAME" >> "$GITHUB_ENV"
+          fi
+
+      - name: Lấy bài từ Notion và dựng website
+        run: node build.mjs
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_BOOKS_DB: ${{ secrets.NOTION_BOOKS_DB }}
+          NOTION_POSTS_DB: ${{ secrets.NOTION_POSTS_DB }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

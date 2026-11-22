@@ -1,0 +1,63 @@
+{
+  "books": [
+    {
+      "title": "Cuốn sách mẫu một",
+      "author": "Tên tác giả",
+      "genre": "Văn học",
+      "rating": 5,
+      "summary": "Đây là chỗ HoBii viết vài dòng đầu về cuốn sách.",
+      "date": "2026-11-18",
+      "body": "<p>Đây là bài mẫu để HoBii xem trang review trông thế nào. Khi nối với Notion, chỗ này sẽ là bài review thật của HoBii.</p><p>Bài review viết trong Notion, có thể chèn ảnh, chia đoạn, in đậm, trích dẫn.</p><blockquote>Một câu trích từ cuốn sách sẽ hiện như thế này.</blockquote><p>Cuối bài là nút mượn sách, dẫn sang ezlib.</p>"
+    },
+    {
+      "title": "Cuốn sách mẫu hai",
+      "author": "Tên tác giả",
+      "genre": "Kỹ năng sống",
+      "rating": 4,
+      "summary": "Cuốn thứ hai, để xem lưới sách có nhiều cuốn trông thế nào.",
+      "date": "2026-11-15",
+      "body": "<p>Bài mẫu thứ hai.</p>"
+    },
+    {
+      "title": "Cuốn sách mẫu ba",
+      "author": "Tên tác giả",
+      "genre": "Văn học",
+      "rating": 4,
+      "summary": "Cuốn thứ ba trong bộ mẫu.",
+      "date": "2026-11-10",
+      "body": "<p>Bài mẫu thứ ba.</p>"
+    },
+    {
+      "title": "Cuốn sách mẫu bốn",
+      "author": "Tên tác giả",
+      "genre": "Thiếu nhi",
+      "rating": 5,
+      "summary": "Cuốn thứ tư, thuộc một thể loại khác để thử bộ lọc.",
+      "date": "2026-11-05",
+      "body": "<p>Bài mẫu thứ tư.</p>"
+    }
+  ],
+  "posts": [
+    {
+      "title": "Bài tâm sự mẫu",
+      "section": "Tâm sự",
+      "summary": "Chỗ này là vài dòng tóm tắt, hiện ở trang chủ và trang Góc viết.",
+      "date": "2026-11-17",
+      "body": "<p>Đây là bài mẫu để HoBii xem trang bài viết trông thế nào. Chữ to, dòng thoáng, dễ đọc trên điện thoại.</p><p>Bài thật HoBii viết trong Notion rồi chuyển trạng thái sang Đăng, website sẽ tự cập nhật.</p>"
+    },
+    {
+      "title": "Ghi nhanh một buổi chiều",
+      "section": "Ghi nhanh",
+      "summary": "Mục Ghi nhanh dành cho những bài ngắn, viết tự do.",
+      "date": "2026-11-12",
+      "body": "<p>Bài mẫu ngắn.</p>"
+    },
+    {
+      "title": "Chuyện sách mẫu",
+      "section": "Chuyện sách",
+      "summary": "Mục Chuyện sách dành cho những điều xoay quanh sách mà không phải review.",
+      "date": "2026-11-08",
+      "body": "<p>Bài mẫu thứ ba.</p>"
+    }
+  ]
+}

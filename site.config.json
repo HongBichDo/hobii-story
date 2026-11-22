@@ -1,0 +1,70 @@
+{
+  "name": "HoBii Story",
+  "tagline": "Đọc. Viết. Sống chậm.",
+  "description": "HoBii Story là nơi HoBii ghi lại những cuốn sách đã đọc, những điều muốn kể và một thư viện sách nhỏ.",
+  "base": "",
+  "links": {
+    "fanpage": "https://www.facebook.com/hobiilibrary",
+    "ezlib": "https://ezlib.vn/libraries/hobiilibrary"
+  },
+  "hero": {
+    "greeting": "Tớ là HoBii",
+    "lines": [
+      "Một nơi để đọc,",
+      "để kể chuyện và",
+      "lưu lại những điều nhỏ bé."
+    ]
+  },
+  "quote": {
+    "text": "Sách không chỉ để đọc, mà còn để chữa lành những ngày bình thường.",
+    "by": "HoBii"
+  },
+  "library": {
+    "title": "Thư viện sách nhỏ của HoBii",
+    "intro": "Mình có một thư viện sách nhỏ, miễn phí, khoảng 500 đầu sách. Sách để ở nhà, mượn qua mạng trên ezlib.",
+    "steps": [
+      "Bấm nút bên dưới để sang trang thư viện của HoBii trên ezlib.",
+      "Chọn cuốn sách mình thích trong danh mục.",
+      "Làm theo hướng dẫn trên ezlib để mượn sách."
+    ],
+    "note": "Danh mục sách, tình trạng sách và việc mượn trả đều nằm trên ezlib."
+  },
+  "about": {
+    "title": "Về HoBii",
+    "paragraphs": [
+      "Mình là HoBii. Trang này là nơi mình ghi lại những cuốn sách đã đọc và những điều mình muốn kể.",
+      "Ngoài ra mình còn có một thư viện sách nhỏ, ai yêu sách cũng mượn được miễn phí qua ezlib.",
+      "Phần giới thiệu này là chữ viết tạm. HoBii sẽ tự viết lại bằng giọng của mình."
+    ]
+  },
+  "notion": {
+    "publishedValue": "Đăng",
+    "books": {
+      "title": "Tên sách",
+      "author": "Tác giả",
+      "genre": "Thể loại",
+      "rating": "Điểm",
+      "cover": "Bìa",
+      "summary": "Tóm tắt",
+      "date": "Ngày",
+      "status": "Trạng thái",
+      "ezlib": "Link ezlib"
+    },
+    "posts": {
+      "title": "Tiêu đề",
+      "section": "Mục",
+      "image": "Ảnh",
+      "summary": "Tóm tắt",
+      "date": "Ngày",
+      "status": "Trạng thái"
+    }
+  },
+  "focus": {
+    "hero": "",
+    "quote": "",
+    "about": "",
+    "sach": "",
+    "viet": "",
+    "thuvien": ""
+  }
+}
