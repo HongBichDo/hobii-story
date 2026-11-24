@@ -9,5 +9,8 @@
   },
   "optionalDependencies": {
     "sharp": "^0.33.0"
+  },
+  "dependencies": {
+    "heic-convert": "^2.1.0"
   }
 }

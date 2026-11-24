@@ -55,6 +55,12 @@ async function saveImage(src, key, width = 1400) {
       } else {
         buf = await fs.readFile(src);
       }
+      // ảnh iPhone (HEIC) thì đổi sang JPG trước, vì sharp không đọc được
+      const brand = buf.subarray(4, 12).toString('latin1');
+      if (/^ftyp(heic|heix|hevc|hevx|mif1|msf1)/.test(brand)) {
+        const heicConvert = (await import('heic-convert')).default;
+        buf = Buffer.from(await heicConvert({ buffer: buf, format: 'JPEG', quality: 0.92 }));
+      }
       if (sharp) buf = await sharp(buf).rotate().resize({ width, withoutEnlargement: true }).webp({ quality: 86 }).toBuffer();
       await fs.writeFile(cached, buf);
     }
