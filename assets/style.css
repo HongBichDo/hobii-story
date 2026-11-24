@@ -584,3 +584,5 @@ h1,h2,.statement .big,.book h3,.pg b{text-wrap:balance}
 .foot-nav a:hover,.foot-ez:hover{color:var(--p6)}
 .foot-ez{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;color:var(--g7)}
 @media (max-width:760px){.foot-nav{justify-content:center;gap:16px}}
+/* điện thoại: khung ảnh đầu trang cao hơn để thấy trọn ảnh dưới thanh menu */
+@media (max-width:760px){.hero-bg{height:96vw}}

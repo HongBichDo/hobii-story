@@ -75,7 +75,7 @@
     }
   },
   "focus": {
-    "hero": "",
+    "hero": "50% 40%",
     "quote": "",
     "about": "",
     "sach": "",
