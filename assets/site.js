@@ -28,6 +28,12 @@
     }, { passive: true });
   }
   var items = document.querySelectorAll('.reveal');
+  // phần đang nằm trong màn hình lúc mở trang: hiện ngay, không chờ hiệu ứng
+  var vh = window.innerHeight;
+  items.forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.top < vh && r.bottom > 0) el.classList.add('now', 'in');
+  });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

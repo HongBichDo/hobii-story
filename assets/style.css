@@ -536,3 +536,10 @@ body:not(.home) main::before{content:"";position:absolute;inset:0;z-index:-1;bac
   .chip{flex:none}
   .finder{margin-top:0}
 }
+
+/* hiện nhanh hơn: phần đang nằm trên màn hình hiện ngay, phần bên dưới hiện nhẹ khi cuộn tới */
+.js .reveal{translate:0 10px;transition:opacity .45s ease,translate .45s ease}
+.js .reveal.now{transition:none}
+.js .books .reveal:nth-child(4n+2),.js .posts .reveal:nth-child(2n),.js .steps3 .reveal:nth-child(2){transition-delay:.05s}
+.js .books .reveal:nth-child(4n+3),.js .steps3 .reveal:nth-child(3){transition-delay:.1s}
+.js .books .reveal:nth-child(4n+4){transition-delay:.15s}
