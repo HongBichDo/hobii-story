@@ -478,3 +478,10 @@ body:not(.home) main::before{content:"";position:absolute;inset:0;z-index:-1;bac
   .cta-box{border-radius:30px}
   .lead img{border-radius:22px}
 }
+
+/* sao đánh giá: tô được nửa sao, kèm số điểm */
+.stars{display:flex;align-items:center;gap:8px;letter-spacing:0}
+.st{position:relative;display:inline-block;line-height:1;letter-spacing:0;white-space:nowrap}
+.st-bg{color:rgba(178,77,108,.22)}
+.st-fg{position:absolute;left:0;top:0;overflow:hidden;color:var(--p6)}
+.st-n{font-weight:600;font-size:.85em;color:var(--ink2)}
