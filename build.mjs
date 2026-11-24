@@ -124,6 +124,11 @@ if (cfg.base) for (const it of [...data.books, ...data.posts]) {
   if (it.body) it.body = it.body.replaceAll('src="/img/', `src="${cfg.base}/img/`);
 }
 
+// dấu phiên bản cho style.css và site.js: đổi tệp là trình duyệt tự tải bản mới
+cfg.assetVer = crypto.createHash('md5')
+  .update(await fs.readFile(path.join(ROOT, 'assets', 'style.css')))
+  .update(await fs.readFile(path.join(ROOT, 'assets', 'site.js')))
+  .digest('hex').slice(0, 8);
 const T = makeTemplates(cfg, photos);
 async function write(rel, html) {
   const file = path.join(DIST, rel);
