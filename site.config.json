@@ -28,14 +28,27 @@
       "Chọn cuốn sách mình thích trong danh mục.",
       "Làm theo hướng dẫn trên ezlib để mượn sách."
     ],
-    "note": "Danh mục sách, tình trạng sách và việc mượn trả đều nằm trên ezlib."
+    "note": "Danh mục sách, tình trạng sách và việc mượn trả đều nằm trên ezlib.",
+    "stats": [
+      [
+        "500",
+        "đầu sách để ở nhà"
+      ],
+      [
+        "0 đồng",
+        "mượn hoàn toàn miễn phí"
+      ],
+      [
+        "Online",
+        "mượn qua ezlib"
+      ]
+    ]
   },
   "about": {
     "title": "Về HoBii",
     "paragraphs": [
       "Mình là HoBii. Trang này là nơi mình ghi lại những cuốn sách đã đọc và những điều mình muốn kể.",
-      "Ngoài ra mình còn có một thư viện sách nhỏ, ai yêu sách cũng mượn được miễn phí qua ezlib.",
-      "Phần giới thiệu này là chữ viết tạm. HoBii sẽ tự viết lại bằng giọng của mình."
+      "Ngoài ra mình còn có một thư viện sách nhỏ, ai yêu sách cũng mượn được miễn phí qua ezlib."
     ]
   },
   "notion": {
