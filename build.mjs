@@ -101,7 +101,7 @@ if (token && (process.env.NOTION_BOOKS_DB || process.env.NOTION_POSTS_DB)) {
   console.log('Chưa có chìa Notion, dùng nội dung mẫu.');
   const s = JSON.parse(await fs.readFile(path.join(ROOT, 'content', 'sample.json'), 'utf8'));
   data = {
-    books: s.books.map((b) => ({ ...b, kind: 'book', cover: null })),
+    books: s.books.map((b) => ({ ...b, kind: 'book', cover: null, genres: b.genres || (b.genre ? [b.genre] : []) })),
     posts: s.posts.map((p) => ({ ...p, kind: 'post', cover: null })),
   };
 }
@@ -124,6 +124,55 @@ if (cfg.base) for (const it of [...data.books, ...data.posts]) {
   if (it.body) it.body = it.body.replaceAll('src="/img/', `src="${cfg.base}/img/`);
 }
 
+// câu cảm nhận ngắn cho thẻ sách: lấy cột Tóm tắt, nếu trống thì lấy tiêu đề hoặc câu đầu của bài
+const unhtml = (h) => String(h).replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+function excerptOf(it) {
+  if (it.summary) return it.summary;
+  const body = it.body || '';
+  const first = body.match(/^\s*<(h[234]|p)>([\s\S]*?)<\/\1>/);
+  if (!first) return '';
+  let t = unhtml(first[2]);
+  // bỏ tên sách ở đầu câu, ví dụ "Thầy lang: khi con người..." thành "Khi con người..."
+  const low = t.toLowerCase(), title = String(it.title).toLowerCase();
+  if (low.startsWith(title)) {
+    const m = t.slice(title.length).match(/^\s*[:\-–—]\s*(.+)$/);
+    if (m && m[1].length > 12) t = m[1].charAt(0).toUpperCase() + m[1].slice(1);
+  }
+  if (first[1] === 'p') {
+    const m = t.match(/^.{20,}?[.!?…](?=\s|$)/);
+    if (m) t = m[0];
+  }
+  if (t.length > 120) t = t.slice(0, 117).replace(/\s+\S*$/, '') + '…';
+  return t;
+}
+for (const it of [...data.books, ...data.posts]) it.excerpt = excerptOf(it);
+
+// ảnh khi dán đường dẫn lên Facebook, Zalo: khổ ngang 1200x630, nền mờ, ảnh sách ở giữa (đuôi .jpg cho mọi nơi đọc được)
+async function shareImage(local) {
+  if (!local || !sharp) return null;
+  const src = path.join(DIST, local);
+  const out = local.replace(/\.\w+$/, '-share.jpg');
+  try {
+    const buf = await fs.readFile(src);
+    const bg = await sharp(buf).resize(1200, 630, { fit: 'cover' }).blur(28).modulate({ brightness: 1.05 }).toBuffer();
+    const fg = await sharp(buf).resize({ height: 570, width: 1100, fit: 'inside' }).toBuffer();
+    await sharp(bg).composite([{ input: fg, gravity: 'center' }]).jpeg({ quality: 84 }).toFile(path.join(DIST, out));
+    return out;
+  } catch (e) {
+    console.warn(`  ! Không tạo được ảnh chia sẻ (${e.message})`);
+    return null;
+  }
+}
+for (const it of [...data.books, ...data.posts]) it.share = await shareImage(it.cover);
+photos.share = await shareImage(photos.hero || photos.about);
+
+// biểu tượng nhỏ trên thẻ trình duyệt và khi lưu ra màn hình điện thoại
+const iconSvg = await fs.readFile(path.join(ROOT, 'assets', 'favicon.svg'));
+if (sharp) {
+  await sharp(iconSvg, { density: 300 }).resize(180, 180).flatten({ background: '#2F5C47' }).png().toFile(path.join(DIST, 'apple-touch-icon.png'));
+  await sharp(iconSvg, { density: 300 }).resize(32, 32).png().toFile(path.join(DIST, 'favicon-32.png'));
+}
+
 // dấu phiên bản cho style.css và site.js: đổi tệp là trình duyệt tự tải bản mới
 cfg.assetVer = crypto.createHash('md5')
   .update(await fs.readFile(path.join(ROOT, 'assets', 'style.css')))
@@ -142,7 +191,7 @@ const latest = [...data.books, ...data.posts]
 
 await write('index.html', T.home({ latest }));
 await write('sach/index.html', T.booksIndex(data.books));
-data.books.forEach((b, i) => write(`sach/${b.slug}/index.html`, T.bookPage(b, i)));
+data.books.forEach((b, i) => write(`sach/${b.slug}/index.html`, T.bookPage(b, i, data.books)));
 await write('viet/index.html', T.postsIndex(data.posts));
 data.posts.forEach((p, i) => write(`viet/${p.slug}/index.html`, T.postPage(p, i)));
 await write('thu-vien/index.html', T.libraryPage());

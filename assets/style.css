@@ -485,3 +485,54 @@ body:not(.home) main::before{content:"";position:absolute;inset:0;z-index:-1;bac
 .st-bg{color:rgba(178,77,108,.22)}
 .st-fg{position:absolute;left:0;top:0;overflow:hidden;color:var(--p6)}
 .st-n{font-weight:600;font-size:.85em;color:var(--ink2)}
+
+/* tìm kiếm sách */
+.finder{display:flex;justify-content:center;margin:-10px 0 22px}
+.search{display:flex;align-items:center;gap:10px;width:min(460px,100%);background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 20px;box-shadow:var(--soft);transition:border-color .4s var(--ease)}
+.search:focus-within{border-color:var(--g5)}
+.search .ti{color:var(--g5);font-size:19px}
+.search input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:16px;color:var(--ink);padding:13px 0}
+.lib .chips{margin-bottom:40px}
+
+/* thẻ sách: câu cảm nhận và ngày đăng */
+.book .excerpt{margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.book .when{margin-top:8px;font-size:12.5px;color:#6B7F72;letter-spacing:.02em}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags .tag{margin:0}
+
+/* cuối bài review: mượn sách, chia sẻ, cuốn tiếp theo */
+.after{max-width:720px;margin:56px auto 0}
+.borrow{display:grid;grid-template-columns:110px 1fr;gap:28px;align-items:center;background:var(--g9);color:#fff;border-radius:30px;padding:30px 34px}
+.borrow .thumb.mini{border-radius:14px;box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+.borrow .label{color:var(--p2)}
+.borrow h2{color:#fff;font-size:clamp(22px,2.4vw,30px);font-weight:400;margin:4px 0 6px}
+.borrow h2 i{color:var(--p2)}
+.borrow p{color:rgba(255,255,255,.82);font-size:15px}
+.borrow .btn{margin-top:16px}
+.share{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:var(--g7);border-radius:999px;padding:7px 16px;font:inherit;font-size:14px;cursor:pointer;transition:border-color .4s var(--ease),background .4s var(--ease)}
+.share-btn:hover{border-color:var(--g5);background:var(--g1)}
+.share-btn.fb{color:#1B5FD1}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+.pg{display:flex;flex-direction:column;gap:4px;padding:16px 20px;border-radius:20px;background:#fff;border:1px solid var(--line);transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.pg:hover{border-color:var(--g5);transform:translateY(-2px)}
+.pg .muted{font-size:13px;display:inline-flex;align-items:center;gap:4px}
+.pg b{font-family:'Lora',serif;font-weight:400;font-size:17px;color:var(--g9)}
+.pg.next{text-align:right;align-items:flex-end;grid-column:2}
+.related{padding-top:10px;padding-bottom:40px}
+.related .books{grid-template-columns:repeat(3,1fr);padding-bottom:60px}
+@media (max-width:760px){
+  .borrow{grid-template-columns:1fr;padding:26px 24px}
+  .borrow .thumb.mini{max-width:100px}
+  .pager{grid-template-columns:1fr}
+  .pg.next{grid-column:auto}
+  .related .books{grid-template-columns:repeat(2,1fr)}
+  .related .books .book:nth-child(3){display:none}
+}
+/* điện thoại: thể loại nằm một hàng, vuốt ngang */
+@media (max-width:760px){
+  .lib .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:0 -20px 32px;padding:2px 20px 6px;scrollbar-width:none}
+  .lib .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .finder{margin-top:0}
+}

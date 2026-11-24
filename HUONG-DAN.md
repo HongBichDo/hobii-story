@@ -74,6 +74,11 @@ Nội dung bài viết, bài review thì viết ngay bên trong trang của từ
 
 **Bước 4.** Chạy `npm run dev`. Chỉ những dòng có Trạng thái là **Đăng** mới lên website.
 
+**Mẹo cho bảng Sách:**
+- Cột **Tóm tắt**: một câu cảm nhận ngắn, hiện dưới thẻ sách. Để trống thì website tự lấy tiêu đề hoặc câu đầu của bài review.
+- Cột **Ngày**: ngày đăng bài, hiện trên thẻ sách và dùng để xếp sách mới lên đầu. Để trống thì website lấy ngày tạo dòng trong Notion.
+- Cột **Thể loại**: chọn được nhiều thể loại. Các thể loại tự thành nút lọc trên trang Sách.
+
 ## 5. Ảnh được lưu thế nào
 
 Mỗi lần cập nhật, website tải ảnh trong Notion về, thu nhỏ rồi lưu cùng trang. Vì vậy ảnh chụp bằng điện thoại cũng không làm trang chậm, và ảnh không bị hỏng khi đường dẫn của Notion hết hạn.

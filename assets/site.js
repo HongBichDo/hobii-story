@@ -38,17 +38,52 @@
   } else {
     items.forEach(function (el) { el.classList.add('in'); });
   }
+  // lọc theo thể loại và tìm kiếm (dùng chung cho trang Sách và Góc viết)
   var group = document.querySelector('[data-filter-group]');
+  var search = document.querySelector('[data-search]');
+  var none = document.querySelector('[data-none]');
+  var cat = '*';
+  var fold = function (s) {
+    return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'd').toLowerCase().trim();
+  };
+  function apply() {
+    var q = search ? fold(search.value) : '';
+    var shown = 0;
+    document.querySelectorAll('main [data-cat]').forEach(function (el) {
+      if (el.closest('.related')) return;
+      var cats = (el.getAttribute('data-cat') || '').split('|');
+      var okCat = cat === '*' || cats.indexOf(cat) !== -1;
+      var okQ = !q || (el.getAttribute('data-q') || '').indexOf(q) !== -1;
+      el.hidden = !(okCat && okQ);
+      if (!el.hidden) { shown++; el.classList.add('in'); }
+    });
+    if (none) none.hidden = shown > 0;
+  }
   if (group) {
     group.addEventListener('click', function (e) {
       var btn = e.target.closest('.chip');
       if (!btn) return;
       group.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
       btn.classList.add('on');
-      var f = btn.getAttribute('data-f');
-      document.querySelectorAll('[data-cat]').forEach(function (el) {
-        el.hidden = f !== '*' && el.getAttribute('data-cat') !== f;
-      });
+      cat = btn.getAttribute('data-f');
+      apply();
     });
   }
+  if (search) search.addEventListener('input', apply);
+
+  // nút chép đường dẫn
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = b.getAttribute('data-copy');
+      var label = b.querySelector('span');
+      var done = function () { if (label) { label.textContent = 'Đã chép'; setTimeout(function () { label.textContent = 'Chép đường dẫn'; }, 2000); } };
+      if (navigator.share && window.matchMedia('(max-width: 760px)').matches) {
+        navigator.share({ title: document.title, url: url }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(done, function () { window.prompt('Chép đường dẫn này:', url); });
+      } else {
+        window.prompt('Chép đường dẫn này:', url);
+      }
+    });
+  });
 })();
