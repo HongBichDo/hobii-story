@@ -87,7 +87,7 @@ Mỗi lần cập nhật, website tải ảnh trong Notion về, thu nhỏ rồi
 
 Website được lưu miễn phí trên GitHub.
 
-- Địa chỉ website: https://hongbichdo.github.io/hobii-story/
+- Địa chỉ website: https://hongbichdo.com/ (link cũ hongbichdo.github.io/hobii-story vẫn tự chuyển sang)
 - Nút cập nhật ngay: https://github.com/HongBichDo/hobii-story/actions/workflows/cap-nhat-website.yml (bấm **Run workflow**, rồi bấm nút xanh **Run workflow**) Bài trong Notion lên website theo hai cách:
 
 - **Tự động mỗi ngày lúc 6 giờ sáng.** Không cần làm gì.

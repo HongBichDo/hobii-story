@@ -34,15 +34,9 @@ jobs:
       - name: Cài công cụ thu nhỏ ảnh
         run: npm ci
 
-      - name: Tính đường dẫn gốc của website
-        run: |
-          NAME="${GITHUB_REPOSITORY#*/}"
-          OWNER="$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')"
-          if [ "$(echo "$NAME" | tr '[:upper:]' '[:lower:]')" = "$OWNER.github.io" ]; then
-            echo "SITE_BASE=" >> "$GITHUB_ENV"
-          else
-            echo "SITE_BASE=/$NAME" >> "$GITHUB_ENV"
-          fi
+      - name: Đường dẫn gốc của website
+        # Website chạy ở tên miền riêng hongbichdo.com nên không cần đuôi /hobii-story
+        run: echo "SITE_BASE=" >> "$GITHUB_ENV"
 
       - name: Lấy bài từ Notion và dựng website
         run: node build.mjs
